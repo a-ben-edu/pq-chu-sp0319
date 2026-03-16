@@ -24,7 +24,7 @@ class Polynomial():
             x_term *= x
         return value
 
-    def __add__(self, other:'Polynomial')-> 'Polynomial':
+    def __add__(self, other:'Polynomial') -> 'Polynomial':
         ## Check which is higher degree and rename accordingly
         if self.degree > other.degree:
             higher = self
@@ -41,8 +41,13 @@ class Polynomial():
         return Polynomial(coefficients=new_coefficients, degree=higher.degree)
     
     def scalar_mult(self, multiplier):
-        self.coefficients = [coeffecient * multiplier for coeffecient in self.coefficients]
-
+        new_coefficients = [coeffecient * multiplier for coeffecient in self.coefficients]
+        return Polynomial(coefficients=new_coefficients, degree=self.degree)
+    
+    def __sub__(self, other:'Polynomial') -> 'Polynomial':
+        other_inverted = other.scalar_mult(-1)
+        return self + other_inverted
+    
 class Poly2(Polynomial):
     def __init__(self,a=1,b=2,c=3):
         with_coefficients=[c,b,a]
@@ -79,5 +84,8 @@ my_poly = Poly2(1,5,-2)
 print(my_poly)
 
 my_poly.b=-2
-my_poly.scalar_mult(10)
-print(my_poly.coefficients)
+my_poly = my_poly.scalar_mult(10)
+
+my_second_poly = Poly2(2,1,4)
+print(my_poly+my_second_poly)
+print(my_poly-my_second_poly)
