@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import N, W, E, S
 from tkinter import ttk
+from polynomial import Poly2
 
 class PQApp(tk.Frame):
     def __init__(self, master=None):
@@ -56,18 +57,15 @@ class PQApp(tk.Frame):
         self.solve_button.grid(column=1, row=2 )
 
     def solve(self):
-        print("The solve button was pressed")
-        #self.read_fields()
+        print("DEBUG: The solve button was pressed")
+        left_poly, right_poly = self.read_fields()
+        solveable_poly = left_poly-right_poly
         print(self.l_a.get(), " - ",self.l_b.get() , " - ",self.l_c.get() , " - ",self.r_a.get(), " - ",self.r_b.get(), " - ",self.r_c.get())
 
-    def read_fields(self):
-        self.l_a=self.left_a_entry.get()
-        self.l_b=self.left_b_entry.get()
-        self.l_c=self.left_c_entry.get()        
-        self.r_a=self.right_a_entry.get()        
-        self.r_b=self.right_b_entry.get()        
-        self.r_c=self.right_c_entry.get()
-
+    def read_fields(self)-> tuple[Poly2, Poly2]:
+        left_poly = Poly2(a=self.left_a_entry.get(), b=self.left_b_entry.get(), c=self.left_c_entry.get())      
+        right_poly = Poly2(a=self.right_a_entry.get(), b=self.right_b_entry.get(), c=self.right_c_entry.get())
+        return (left_poly, right_poly)
 
 app = PQApp()
 app.master.title('PQ-chu')
