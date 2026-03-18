@@ -64,8 +64,11 @@ class Polynomial():
         return Polynomial(coefficients=new_coefficients, degree= new_degree)
 
     def __sub__(self, other:'Polynomial') -> 'Polynomial':
-        other_inverted = other.scalar_mult(-1)
-        return self + other_inverted
+    
+        return self + (-other)
+    
+    def __neg__(self) -> Polynomial:
+        return self.scalar_mult(-1)
     
 class Poly2(Polynomial):
     def __init__(self,a:float | int=1,b:float | int=2,c:float | int=3):
@@ -104,11 +107,16 @@ class Poly2(Polynomial):
     def scale(self, factor:float | int) -> Poly2:
         return Poly2(a=self.coefficients[2]*factor, b=self.coefficients[1]*factor, c=self.coefficients[0]*factor)
 
+    def __neg__(self) -> Poly2:
+        return self.scale(-1)
+    
     def __sub__(self, other:'Poly2') -> 'Poly2':
-        other_inverted = other.scale(-1)
-        return self + other_inverted
+        return self + (-other)
+    
+
 
 def test_cases():
+    print("A few print statements for testing purposes")
     my_poly = Poly2(1,5,-2)
     print(my_poly)
 
