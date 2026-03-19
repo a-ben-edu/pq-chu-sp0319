@@ -67,7 +67,35 @@ class PQApp(tk.Frame):
     
     def solve(self):
         left_poly, right_poly = self.read_fields()
-        self.answertext.set("The Solve button was pressed.")
+        
+        try:
+            if left_poly.a == 0:
+                self.answertext.set("no solution found") 
+                return
+            left_poly = left_poly-right_poly
+            right_poly = 0
+            left_poly = left_poly.scale(left_poly.a**-1)
+    
+            x1 = -1*left_poly.b/2 + (left_poly.b**2/4-left_poly.c)**0.5
+            x2 = -1*left_poly.b/2- (left_poly.b**2/4-left_poly.c)**0.5
+            
+                       
+
+            if (left_poly.b/2)**2 < left_poly.c:
+                self.answertext.set("no solution found")
+            elif x1 == x2:
+                self.answertext.set("x=" + str(x1))     
+            elif x1 != x2:
+                self.answertext.set("X1=" + str(x1) + " x2=" + str(x2))       
+            else:
+                self.answertext.set("no solution found")            
+
+
+        except:
+            print("Stupid equation")
+        
+
+
 
         ##NEEDS CODE TO SOLVE EQUATION HERE. CAN YOU DO IT?
 
