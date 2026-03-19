@@ -61,8 +61,8 @@ class PQApp(tk.Frame):
         self.solve_button.grid(column=1, row=2 )
 
     def read_fields(self)-> tuple[Poly2, Poly2]:
-        left_poly = Poly2(a=self.left_a_entry.get(), b=self.left_b_entry.get(), c=self.left_c_entry.get())      
-        right_poly = Poly2(a=self.right_a_entry.get(), b=self.right_b_entry.get(), c=self.right_c_entry.get())
+        left_poly = Poly2(a=float(self.left_a_entry.get()), b=float(self.left_b_entry.get()), c=float(self.left_c_entry.get()))      
+        right_poly = Poly2(a=float(self.right_a_entry.get()), b=float(self.right_b_entry.get()), c=float(self.right_c_entry.get()))
         return (left_poly, right_poly)
     
     def solve(self):
