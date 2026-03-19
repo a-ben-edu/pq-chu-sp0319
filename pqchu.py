@@ -70,7 +70,7 @@ class PQApp(tk.Frame):
         left_poly = left_poly-right_poly
         right_poly = 0
         left_poly = left_poly * left_poly.a**-1
-        
+    
         x1 = -1*left_poly.b/2 + left_poly.b**2/4-left_poly.c
 
 
